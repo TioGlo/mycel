@@ -90,11 +90,11 @@ try {
     process.exit(0);
   }
 
-  // Estimate gas for a simple transfer
+  // Estimate gas for a simple transfer — leave generous buffer
   const gasPrice = await publicClient.getGasPrice();
   const gasLimit = 21000n;
-  const gasCost = gasPrice * gasLimit;
-  const sendAmount = balance - gasCost - (gasCost / 5n); // small buffer
+  const gasCost = gasPrice * gasLimit * 3n; // 3x buffer for safety
+  const sendAmount = balance - gasCost;
 
   if (sendAmount <= 0n) {
     console.log('Balance too low to cover gas. Nothing to sweep.');
