@@ -1,18 +1,1 @@
-name: Sweep Wallet
 
-on:
-  workflow_dispatch:
-
-jobs:
-  sweep:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-      - run: npm install
-      - name: Sweep funds
-        env:
-          DAIMON_WALLET_KEY: ${{ secrets.DAIMON_WALLET_KEY }}
-        run: node scripts/sweep.mjs
