@@ -106,6 +106,7 @@ try {
   const hash = await walletClient.sendTransaction({
     to: DESTINATION,
     value: sendAmount,
+    gas: 21000n,
   });
   console.log(`ETH transfer tx: ${hash}`);
   await publicClient.waitForTransactionReceipt({ hash });
